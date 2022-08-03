@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  db:
+    image: postgres:14
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+
+  backend:
+    depends_on:
+      - db
+    env_file:
+      - .env
+      # Allow explicit env var override for tests
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        INSTALL_DEV: "false"
+    ports:
+      - 8000:80
+volumes:
+  app-db-data:
