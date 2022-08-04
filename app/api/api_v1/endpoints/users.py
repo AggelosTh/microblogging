@@ -151,3 +151,43 @@ def update_user(
         )
     user = crud.user.update(db, db_obj=user, obj_in=user_in)
     return user
+
+
+####### MY CODE ###########
+
+# @router.get('/blog/{id}', response_model=schemas.Blog)
+# def read_blog(
+#     id: int,
+#     db: Session = Depends(deps.get_db),
+# ) -> Any:
+#     """
+#     Retrieve blog.
+#     """
+#     blog = crud.blog.get(db, id=id)
+#     return blog 
+
+
+# @router.get('/blog/article', response_model=List[schemas.Article])
+# def read_article(
+#     db: Session = Depends(deps.get_db),
+#     skip: int = 0,
+#     limit: int = 100,    
+# ) -> Any:
+#     """
+#     Get a specific user by id.
+#     """
+#     articles = crud.article.get(db) # status='published'
+#     return articles
+
+
+# @router.post('blog/article', response_model=schemas.Article)
+# def create_article(
+#     *,
+#     db: Session = Depends(deps.get_db), 
+#     article = schemas.ArticleCreate,
+# ) -> Any:
+#     """
+#     Create new article.
+#     """
+#     article = crud.blog_article.create(db, obj_in=article)
+#     return article

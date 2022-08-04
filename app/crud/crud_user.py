@@ -7,6 +7,8 @@ from app.crud.base import CRUDBase
 from app.models.blog import Blog
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate
+from app.schemas.blog_article import ArticleCreate, ArticleUpdate
+from app.schemas.blog import BlogUpdate
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
@@ -55,6 +57,15 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
 
     def is_superuser(self, user: User) -> bool:
         return user.is_superuser
+
+    def update_blog(
+        self, db: Session, *, db_obj: Blog, obj_in: Union[BlogUpdate, Dict[str, Any]]
+    ) -> Blog:
+        if isinstance(obj_in, dict):
+            update_data = obj_in
+        else:
+            update_data = obj_in.dict(exclude_unset=True)
+        return super().update(db, db_obj=db_obj, obj_in=update_data)
 
 
 user = CRUDUser(User)
