@@ -7,7 +7,10 @@ You can start using this repo by executing the following command:
 ```bash
 docker-compose up -d
 ```
-Then you can inspect the API via the Swagger Interface at http://localhost:8000/docs/.
+Then you can inspect the API via the Swagger Interface at http://localhost:8000/docs/. <br>
+To gain access you have to use these credentials:\
+username: admin@microblogging.com\
+password: changethis
 
 # Endpoints description
 All requested endpoints have been implemented.
